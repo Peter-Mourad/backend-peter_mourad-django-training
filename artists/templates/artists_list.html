@@ -1,31 +1,35 @@
-<div>
-    {% if artists %}
-        <h1>Artists list: </h1>
-        <ul>
-            {% for artist in artists %}
-                <li>ID: {{artist.id}} </li>
-                <li>Stage name: {{artist.stage_name}}</li>
-                <li>Social link: <a href = "{{ artist.social_link }}">Instagram</a></li>
-                <li>Albums: </li>
-                {% if artist.album_set.all %}
-                    {% for album in artist.album_set.all %}
-                        <ul>
-                            <li>ID: {{album.id}}</li>
-                            <li>Name: {{album.name}}</li>
-                            <li>Creation time: {{album.created}}</li>
-                            <li>Release datetime: {{album.released_at}}</li>
-                            <li>Cost: {{album.cost}}$</li>
-                        </ul>
-                        <br/>
-                    {% endfor %}
-                {% else %}
-                        <br/>
-                {% endif %}     
-            {% endfor %}
-        </ul>
+{% extends 'layout.html' %}
 
-    {% else %}
-        <h1 style="color: red">No available Artists</h1>
+{% block content %}
+    <div>
+        {% if artists %}
+            <h1>Artists list: </h1>
+            <ul>
+                {% for artist in artists %}
+                    <li>ID: {{artist.id}} </li>
+                    <li>Stage name: {{artist.stage_name}}</li>
+                    <li>Social link: <a href = "{{ artist.social_link }}">Instagram</a></li>
+                    <li>Albums: </li>
+                    {% if artist.album_set.all %}
+                        {% for album in artist.album_set.all %}
+                            <ul>
+                                <li>ID: {{album.id}}</li>
+                                <li>Name: {{album.name}}</li>
+                                <li>Creation time: {{album.created}}</li>
+                                <li>Release datetime: {{album.released_at}}</li>
+                                <li>Cost: {{album.cost}}$</li>
+                            </ul>
+                            <br/>
+                        {% endfor %}
+                    {% else %}
+                            <br/>
+                    {% endif %}     
+                {% endfor %}
+            </ul>
 
-    {% endif %}
-</div>
+        {% else %}
+            <h1 style="color: red">No available Artists</h1>
+
+        {% endif %}
+    </div>
+{% endblock %}
