@@ -3,6 +3,8 @@ from django.views import View
 from .forms import ArtistForm
 from .models import Artist
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
 
 
 class ArtistsHomePage(View):
@@ -12,8 +14,6 @@ class ArtistsHomePage(View):
 
 
 class CreateArtist(LoginRequiredMixin, View):
-    login_url = '/admin'
-
     def get(self, request):
         form = ArtistForm()
         return render(request, 'artist_form.html', {'form': form})
@@ -28,4 +28,20 @@ class CreateArtist(LoginRequiredMixin, View):
 
         context = {'form': ArtistForm, 'error': err}
         return render(request, 'artist_form.html', context)
+
+
+class ArtistLogin(View):
+    def get(self, request):
+        return render(request, 'login_form.html', {})
+
+    def post(self, request):
+        user = authenticate(username=request.POST['username'], password=request.POST['password'])
+        err = ''
+        if user is not None:
+            login(request, user)
+        else:
+            err = 'Invalid username or password'
+            print(err)
+
+        return render(request, 'login_form.html', {'error': err})
 
