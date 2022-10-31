@@ -67,6 +67,18 @@ async-dramatiq = ["django-dramatiq (>=0.4.0)"]
 async-rq = ["django-rq (>=0.6.0)"]
 
 [[package]]
+name = "djangorestframework"
+version = "3.14.0"
+description = "Web APIs for Django, made easy."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+django = ">=3.0"
+pytz = "*"
+
+[[package]]
 name = "dotenv"
 version = "0.0.5"
 description = "Handle .env files"
@@ -103,6 +115,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "pytz"
+version = "2022.5"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -129,7 +149,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "d4be73b582a5af3b0020dc08328be253667c90f516384b5234469118855b695b"
+content-hash = "1c55dad1ab01fc53774cc5e068f2b57998e3f0b3b117753abdec43e7189d47ca"
 
 [metadata.files]
 asgiref = [
@@ -151,6 +171,10 @@ django-extensions = [
 django-imagekit = [
     {file = "django-imagekit-4.1.0.tar.gz", hash = "sha256:e559aeaae43a33b34f87631a9fa5696455e4451ffa738a42635fde442fedac5c"},
     {file = "django_imagekit-4.1.0-py2.py3-none-any.whl", hash = "sha256:87e36f8dc1d8745647881f4366ef4965225f048042dacebbee0dcb87425defef"},
+]
+djangorestframework = [
+    {file = "djangorestframework-3.14.0-py3-none-any.whl", hash = "sha256:eb63f58c9f218e1a7d064d17a70751f528ed4e1d35547fdade9aaf4cd103fd08"},
+    {file = "djangorestframework-3.14.0.tar.gz", hash = "sha256:579a333e6256b09489cbe0a067e66abe55c6595d8926be6b99423786334350c8"},
 ]
 dotenv = [
     {file = "dotenv-0.0.5.tar.gz", hash = "sha256:b58d2ab3f83dbd4f8a362b21158a606bee87317a9444485566b3c8f0af847091"},
@@ -230,6 +254,10 @@ psycopg2 = [
     {file = "psycopg2-2.9.4-cp39-cp39-win32.whl", hash = "sha256:07b90a24d5056687781ddaef0ea172fd951f2f7293f6ffdd03d4f5077801f426"},
     {file = "psycopg2-2.9.4-cp39-cp39-win_amd64.whl", hash = "sha256:849bd868ae3369932127f0771c08d1109b254f08d48dc42493c3d1b87cb2d308"},
     {file = "psycopg2-2.9.4.tar.gz", hash = "sha256:d529926254e093a1b669f692a3aa50069bc71faf5b0ecd91686a78f62767d52f"},
+]
+pytz = [
+    {file = "pytz-2022.5-py2.py3-none-any.whl", hash = "sha256:335ab46900b1465e714b4fda4963d87363264eb662aab5e65da039c25f1f5b22"},
+    {file = "pytz-2022.5.tar.gz", hash = "sha256:c4d88f472f54d615e9cd582a5004d1e5f624854a6a27a6211591c251f22a6914"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
