@@ -4,8 +4,6 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class CreateAlbum(LoginRequiredMixin, View):
-    login_url = '/admin'
-    
     def get(self, request):
         form = AlbumForm()
         return render(request, 'album_form.html', {'form': form})
