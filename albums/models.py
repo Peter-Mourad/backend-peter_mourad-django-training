@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
 from django.core.validators import FileExtensionValidator
@@ -21,8 +22,8 @@ class Album(TimeStampedModel):
 
 
 class Song(models.Model):
-    album_name = models.ForeignKey(Album, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, default=album_name)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, default=album.name)
     image = models.ImageField(upload_to='./media/images', blank=False, null=False)
     image_thumbnail = ImageSpecField(source='image', format='jpeg')
     audio = models.FileField(upload_to='./media/audio', validators=[FileExtensionValidator(["mp3", 'wav'])], blank=False, null=False)
