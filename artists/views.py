@@ -1,31 +1,24 @@
 from django.shortcuts import render
-from django.views import View
-from .forms import ArtistForm
+
 from .models import Artist
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import authenticate, login
+from artists.serializers import ArtistSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+import json
 
 
-class ArtistsHomePage(View):
-    def get(self, request):
+class ArtistsList(APIView):
+    def get(self, request, format=None):
         artists = Artist.objects.all()
-        return render(request, 'artists_list.html', {'artists' : artists})
+        serializer = ArtistSerializer(artists, many=True)
+        return Response(serializer.data, status.HTTP_200_OK)
 
-
-class CreateArtist(LoginRequiredMixin, View):
-    login_url = '/admin'
-
-    def get(self, request):
-        form = ArtistForm()
-        return render(request, 'artist_form.html', {'form': form})
-
-    def post(self, request):
-        err = ''
-        form = ArtistForm(request.POST)
-        if form.is_valid():
-            form.save()
-        else: 
-            err = form.errors.as_text()
-
-        context = {'form': ArtistForm, 'error': err}
-        return render(request, 'artist_form.html', context)
-
+    def post(self, request, format=None):
+        serializer = ArtistSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
