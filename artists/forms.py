@@ -6,3 +6,7 @@ class ArtistForm(ModelForm):
         model = Artist
         fields = '__all__'
 
+
+class ArtistLoginForm(ModelForm):
+    class Meta:
+        fields = ['username', 'password']
