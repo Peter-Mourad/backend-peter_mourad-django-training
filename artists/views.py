@@ -1,12 +1,10 @@
 from django.shortcuts import render
-
 from .models import Artist
 from django.contrib.auth import authenticate, login
 from artists.serializers import ArtistSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-import json
 
 
 class ArtistsList(APIView):
